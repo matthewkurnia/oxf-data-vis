@@ -1,0 +1,15 @@
+.city-label {
+  font-family: sans-serif;
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+p {
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+circle {
+  fill: steelblue;
+}

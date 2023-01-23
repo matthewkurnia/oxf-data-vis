@@ -1,0 +1,32 @@
+body {
+  margin: 0px;
+  overflow: hidden;
+}
+
+circle {
+  fill: steelblue;
+  fill-opacity: 0.3;
+}
+
+text {
+  font-family: sans-serif;
+  font-size: 2em;
+}
+
+.title {
+  text-anchor: middle;
+}
+
+.axis-label {
+  font-size: 2.5em;
+  color: gray;
+  text-anchor: middle;
+}
+
+.tick line {
+  color: lightgray;
+}
+
+.domain {
+  color: lightgray;
+}

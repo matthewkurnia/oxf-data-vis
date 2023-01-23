@@ -1,0 +1,22 @@
+body {
+  margin: 0px;
+  overflow: hidden;
+}
+
+text {
+  font-family: sans-serif;
+  font-size: 1.3em;
+  color: #6f6f6f;
+}
+
+.title {
+  font-size: 1.8em;
+}
+
+.tick {
+  color: darkgray;
+}
+
+.domain {
+  color: darkgray;
+}

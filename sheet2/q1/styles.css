@@ -1,0 +1,17 @@
+body {
+  margin: 0px;
+  overflow: hidden;
+}
+
+/* Complete */
+.text {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: gray;
+  font-size: 1.6em;
+}
+
+/* Complete */
+.circle {
+  stroke-width: .5px;
+  stroke: black;
+}

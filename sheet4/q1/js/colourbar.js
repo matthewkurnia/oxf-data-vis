@@ -4,12 +4,15 @@ export const colourbar = (parent, props) => {
     nTicks,
     barWidth,
     barHeight,
-    title
+    title,
+    posX,
+    posY
   } = props;
 
   // Create legend group to append our legend
   const legendG = parent.append('g')
-      .attr('class', 'legend');
+      .attr('class', 'legend')
+      .attr('transform', `translate(${posX}, ${posY})`);
 
   // Legend rectangle
   const legendRect = legendG.append('rect')

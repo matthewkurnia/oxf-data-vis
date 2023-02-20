@@ -17,7 +17,23 @@ const updateVis = () => {
     .domain(popDensityExtent)
     .interpolator(d3.interpolateBlues);
 
-  // ...
+  choroplethMap(svg, { countries, colourValue, colourScale });
+
+  const nTicks = 2;
+  const barWidth = 200;
+  const barHeight = 15;
+  const title = 'Population density per square km';
+  const posX = 30;
+  const posY = 300;
+  colourbar(svg, {
+    colourScale,
+    nTicks,
+    barWidth,
+    barHeight,
+    title,
+    posX,
+    posY
+  });
 
 };
 

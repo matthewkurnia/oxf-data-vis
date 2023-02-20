@@ -4,3 +4,58 @@ body {
   background: #fafcff;
 }
 
+.graticule {
+  fill: none;
+  stroke: lightgray;
+  stroke-width: 0.3px;
+}
+
+.graticule-outline {
+  fill: none;
+  stroke: darkgray;
+  stroke-width: 1px;
+}
+
+.country {
+  fill: #cfdecd;
+  stroke: white;
+  stroke-width: 0.3px;
+}
+
+.wonder-circle {
+  fill: darkslategray;
+  fill-opacity: 0.5;
+  stroke: black;
+  stroke-width: 0.5px;
+}
+
+.wonder-circle:hover {
+  fill-opacity: 0.8;
+  stroke-width: 1px;
+}
+
+.wonder-label {
+  text-anchor: middle;
+  font-size: 0.6em;
+}
+
+/* Tooltip */
+#tooltip {
+  position: absolute;
+  display: none;
+  background: seagreen;
+  box-shadow: 3px 3px 3px 0px rgb(92 92 92 / 0.5);
+  border: 1px solid darkslategray;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px;
+  padding-right: 10px;
+  color: white;
+}
+
+.tooltip-title {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}

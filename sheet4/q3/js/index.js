@@ -6,6 +6,8 @@ const svg = d3.select('svg');
 
 // Global variables
 let countries;
+let options;
+let selectedOption = null;
 
 const updateVis = () => {
   // data accessor to select feature that we'll use as colour
@@ -15,7 +17,29 @@ const updateVis = () => {
   colourScale.domain(countries.features.map(colourValue).sort());
   colourScale.range(d3.schemeOranges[colourScale.domain().length]);
 
-  // ...
+  options = colourScale.domain();
+
+  choroplethMap(svg, {
+    countries,
+    colourValue,
+    colourScale,
+    selectedOption
+  });
+
+  const circleRadius = 10;
+  const spacing = 25;
+  const textOffset = 20;
+  const [xOffset, yOffset] = [50, 250];
+  colourLegend(svg, {
+    colourScale,
+    circleRadius,
+    spacing,
+    textOffset,
+    xOffset,
+    yOffset,
+    onOptionSelected,
+    selectedOption
+  });
 
 };
 
@@ -24,3 +48,12 @@ loadAndProcessData().then(loadedData => {
   updateVis();
 });
 
+const onOptionSelected = value => {
+  console.assert(options.includes(value));
+  if (value !== selectedOption) {
+    selectedOption = value;
+  } else {
+    selectedOption = null;
+  }
+  updateVis();
+};

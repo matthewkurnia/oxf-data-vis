@@ -6,7 +6,7 @@ let countries, symbolsData;
 
 const updateVis = () => {
 
-  // ...
+  worldmapSymbols(svg, { countries, symbolsData });
 
 };
 

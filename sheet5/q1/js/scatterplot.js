@@ -9,7 +9,9 @@ export const scatterplot = (parent, props) => {
     yAxisLabel,
     colourScale,
     colourValue,
-    symbolSize
+    symbolScale,
+    symbolSize,
+    selection
   } = props;
 
   const width = +parent.attr('width');
@@ -80,18 +82,19 @@ export const scatterplot = (parent, props) => {
   const points = chartEnter.merge(chart)
     .selectAll('.point').data(data);
   const pointsEnter = points
-    .enter().append('circle')
+    .enter().append('path')
       .attr('class', 'point')
-      .attr('cx', d => xScale(xValue(d)))
-      .attr('cy', d => yScale(yValue(d)))
+      .attr('transform', d => `translate(${xScale(xValue(d))}, ${yScale(yValue(d))})`)
+      .attr('d', d => symbolScale(d.difficulty))
       .attr('fill', d => colourScale(colourValue(d)))
-      .attr('r', symbolSize)
       .attr('stroke-width', 2);
 
   // Tooltip event listeners
   const tooltipPadding = 15;
-  pointsEnter
+  pointsEnter.merge(points)
+    .attr('opacity', d => selection.has(d.difficulty) ? 1 : 0)
     .on('mouseover', (event, d) => {
+      if (!selection.has(d.difficulty)) return;
       d3.select('#tooltip')
         .style('display', 'block')
         .style('left', (event.pageX + tooltipPadding) + 'px')   

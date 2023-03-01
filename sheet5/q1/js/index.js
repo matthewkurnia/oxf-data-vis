@@ -7,11 +7,21 @@ let data;
 const difficultyLevels = ['Easy','Intermediate','Difficult'];
 const dataBars = [];
 
+// Selection is a subset of difficultyLevels
+let selection = new Set();
+
 // Colour scale (shared between views)
 const colourScale = d3.scaleOrdinal()
   .range(['#b1e8a5', '#7bc77e', '#2a8d46']) // light green to dark green
   .domain(difficultyLevels);
 
+const symbolScale = d3.scaleOrdinal()
+  .domain(difficultyLevels)
+  .range([
+    d3.symbol().type(d3.symbolCircle)(),
+    d3.symbol().type(d3.symbolSquare)(),
+    d3.symbol().type(d3.symbolDiamond)()
+  ]);
 
 const updateVis = () => {
 
@@ -25,7 +35,9 @@ const updateVis = () => {
     yAxisLabel: 'Hours',
     colourScale,
     colourValue: d => d.difficulty,
-    symbolSize: 4
+    symbolScale,
+    symbolSize: 4,
+    selection               // Added selection as parameter so the scatter plot can update properly
   });
 
   // refresh barchart
@@ -37,9 +49,20 @@ const updateVis = () => {
     yValue: d => d.count,
     yAxisLabel: 'Trails',
     colourScale,
-    colourValue: d => d.level
+    colourValue: d => d.level,
+    onDifficultyToggled,    // Added onDifficultyToggle method to handle bar click events
+    selection               // Added selection as parameter so the bar chart can update properly
   });
 
+};
+
+const onDifficultyToggled = difficulty => {
+  // If the clicked bar is already selected, unselect it; Otherwise add it to our selection
+  if (selection.has(difficulty))
+    selection.delete(difficulty);
+  else
+    selection.add(difficulty);
+  updateVis();
 };
 
 // Data loading, preprocessing, and init visualisation
@@ -57,6 +80,11 @@ d3.csv('./data/vancouver_trails.csv')
       const count = data.filter(d => d.difficulty == level).length;
       dataBars.push( {level: level, count: count} );
     });
+
+    // Init selection
+    for (let i = 0; i < difficultyLevels.length; i++) {
+      selection.add(difficultyLevels[i]);
+    }
 
     // Init visualisation
     updateVis();

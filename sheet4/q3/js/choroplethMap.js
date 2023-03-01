@@ -24,7 +24,7 @@ export const choroplethMap = (parent, props) => {
   mapGroupEnter.call(d3.zoom()
     .scaleExtent([1, 8])
     .translateExtent([[0, 0], [width, height]])
-    .on('zoom', event => mapGroupEnter.attr('transform', event.transform)));
+    .on('zoom', event => console.log(event)));
 
   // Earth's border
   mapGroupEnter.append('path')

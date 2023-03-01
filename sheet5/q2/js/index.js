@@ -26,3 +26,11 @@ d3.csv('data/freshwater-use-by-aggregated-region.csv')
     // stackedAreaChart.updateVis();
   })
   .catch(error => console.error(error));
+
+// Handle selection of display type
+d3.select('#display-type-selection')
+  .on('change', event => {
+    displayType = event.target.value;
+    stackedAreaChart.props.displayType = displayType;
+    stackedAreaChart.updateVis();
+  });

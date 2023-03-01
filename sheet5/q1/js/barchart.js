@@ -8,7 +8,9 @@ export const barchart = (parent, props) => {
     yValue, 
     yAxisLabel,
     colourScale,
-    colourValue
+    colourValue,
+    onDifficultyToggled,
+    selection
   } = props;
 
   const width = +parent.attr('width');
@@ -77,5 +79,12 @@ export const barchart = (parent, props) => {
       .attr('y', d => yScale(yValue(d)))
       .attr('fill', d => colourScale(colourValue(d)));
 
+  barsEnter
+    .on('click', (event, d) => {
+      onDifficultyToggled(d.level);
+    });
+
+  barsEnter.merge(bars)
+    .attr('opacity', d => selection.has(d.level) ? 1 : 0.15);
 };
 

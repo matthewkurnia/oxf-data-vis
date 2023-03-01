@@ -100,3 +100,7 @@ h1 {
 .legend-item[data-difficulty="Difficult"] .legend-symbol {
   background: #2a8d46;
 }
+
+.bar {
+  cursor: pointer;
+}
